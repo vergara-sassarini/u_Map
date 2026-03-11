@@ -116,14 +116,15 @@ def run_bic_selection(
     return results_df, best_bic_k
 
 
-# =========================================================
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # MAIN
-# =========================================================
+# select your input (the folder that contains the cube you want to fit) and your output directories
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def main():
-    input_directory = "/Users/amanda/Desktop/dummy/Inputs/"
-    output_directory = "/Users/amanda/Desktop/dummy/Outputs/"
+    input_directory = "~/Inputs/"
+    output_directory = "~/Outputs/"
 
-    filepath = os.path.join(input_directory, "Fit_spectral_cube_balanced.tif")
+    filepath = os.path.join(input_directory, "Fit_spectral_cube.tif")
 
     image, meta, no_data_value = load_multiband_raster(filepath)
     valid_image_2d, valid_mask, (height, width) = preprocess_raster(image, no_data_value)
@@ -140,7 +141,7 @@ def main():
 
     print(f"Using {len(downsampled_image_2d)} pixels for BIC selection")
 
-# SELECT THE cluster_range YOU PREFER! e.g., in this case the model will test from 5 to 35 clusters models.
+# !!SELECT THE cluster_range YOU PREFER! e.g., in this case the model will test from 5 to 35 clusters models.
     run_bic_selection(
         data=downsampled_image_2d,
         output_directory=output_directory,
