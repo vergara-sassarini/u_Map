@@ -7,9 +7,9 @@ from sklearn.mixture import GaussianMixture
 from time import perf_counter
 
 
-# =========================================================
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # USE THIS CODE SNIPPET FOR OPTIMAL NUMBER OF CLUSTERS SELECTION!
-# =========================================================
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def load_multiband_raster(filepath):
     with rasterio.open(filepath) as src:
         image = src.read()
