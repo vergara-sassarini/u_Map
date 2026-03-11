@@ -240,8 +240,8 @@ def main():
     overall_start_time = perf_counter()
 
     # Directories
-    input_directory = '/Users/amanda/Desktop/dummy/Inputs/'
-    output_directory = '/Users/amanda/Desktop/dummy/Outputs/'
+    input_directory = '~/Inputs/'
+    output_directory = '~/Outputs/'
 
     #+++++++++++++++++++++++++++
     # Filepaths:
