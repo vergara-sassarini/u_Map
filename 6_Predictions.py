@@ -297,11 +297,11 @@ def log_cluster_statistics(valid_image_2d, cluster_indices, output_dir, feature_
 
 # MAIN
 def main():
-    mainDir = '/Users/amanda/Desktop/dummy/Outputs/'
-    outputDir = '/Users/amanda/Desktop/dummy/Outputs/'
+    mainDir = 'Insert your model.pkl file path here'
+    outputDir = 'Insert your output folder filepath'
 
-    model_path = os.path.join(mainDir, 'gmm_model_spectral.pkl')
-    new_image_path = '/Users/amanda/Desktop/dummy/Test/Test_spectral_cube_clipped.tif'
+    model_path = os.path.join(mainDir, 'gmm_model_morphologic.pkl')
+    new_image_path = '~Test/Test_morphologic_cube.tif' # Insert here the path to the Test raster. e.g., Test_morphologic_cube.tif which contains a higher-res. DTM
     os.makedirs(outputDir, exist_ok=True)
 
     # Load the saved GMM model
