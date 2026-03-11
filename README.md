@@ -60,7 +60,7 @@ It is optional and intended for post-processing and figure generation.
 ⸻
 INPUT CUBES
 
-Input cubes, ground truth matrices, and test cubes are available for download at: https://github.com/vergara-sassarini/u_Map
+Input cubes, ground truth matrices, and test cubes are available for download at: https://figshare.com/s/2a7c78ac2964baf99267
 
 The raster cubes provided for manuscript reproduction:
 	•	are already cropped
