@@ -58,3 +58,6 @@ The mapping dictionary allows multiple predicted clusters to be assigned to the 
 	•	NaN consistency between rasters
 
 Warnings are printed in the terminal when inconsistencies are detected.
+
+
+* The morphologic GT contains the merged imp/ic units!
