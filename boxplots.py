@@ -5,7 +5,7 @@ from matplotlib.patches import Patch
 from pathlib import Path
 
 # README: to use this boxplot script, you need to the "feature_summary_per_cluster.csv" generated during the Predictions step!!
-csv_path = "/Volumes/Amanda_SSD/1.Mercury/1.INAF_2024/Prova/H05_maps/maps_to_merge/cube_ott_24/Test_cube_H05/outputs/Predictions/balanced/Predictions_dic25/morphospectral_dic2/feature_summary_per_cluster.csv"
+csv_path = "Your .csv Input Directory"
 df = pd.read_csv(csv_path)
 
 required = {"cluster", "feature", "median", "q1", "q3", "iqr"}
@@ -108,7 +108,7 @@ for label, cl_range in cluster_groups:
 
     plt.tight_layout()
 
-    outpath = save_dir / f"CM_dummy_boxplots_merged_{label}.png"  #choose the name according to the product tou're saving
+    outpath = save_dir / f"boxplots_merged_{label}.png"  #choose the name according to the product you're saving
     plt.savefig(outpath, dpi=300, bbox_inches="tight")
     plt.show()
 
