@@ -248,7 +248,7 @@ def main():
     #PLEASE CHANGE THE FILENAMES WHEN WORKING WITH DIFFERENT CUBES: e.g., 'Fit_spectral_cube.tif' --> 'Fit_morphologic_cube.tif'
     #++++++++++++++++++++++++++
 
-    filepath = os.path.join(input_directory, 'Fit_spectral_cube_balanced.tif')
+    filepath = os.path.join(input_directory, 'Fit_spectral_cube.tif')
     model_path = os.path.join(output_directory, 'gmm_model_spectral.pkl')
     cluster_output_path_training = os.path.join(output_directory, 'Cluster_Matrix_spectral_training.tif')
     cluster_output_path_holdout = os.path.join(output_directory, 'Cluster_Matrix_spectral_holdout.tif')
