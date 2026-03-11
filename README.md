@@ -6,17 +6,17 @@ The workflow is organized into sequential scripts, numbered according to the ord
 ⸻
 RESPOSITORY STRUCTURE
 
-1_Fitting_README.txt      --> README text file
-2_Fitting.py              --> python file with the GMM fitting algorithm        
+1_Fitting_README.txt    
+2_Fitting.py                   
 
-3_Evaluation_README.txt   --> README text file
-4_Evaluation.py           --> python file with the Evaluation step
+3_Evaluation_README.txt  
+4_Evaluation.py          
 
-5_Predictions_README.txt  --> README text file
-6_Predictions.py          --> python file for Predictions
+5_Predictions_README.txt 
+6_Predictions.py          
 
-BIC.py                    --> python file for calculating the optimal n. of clusters
-boxplots.py               --> python file for generating boxplots
+BIC.py                    
+boxplots.py               
 ⸻
 WORKFLOW
 
