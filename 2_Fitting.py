@@ -246,14 +246,15 @@ def main():
     #+++++++++++++++++++++++++++
     # Filepaths:
     #PLEASE CHANGE THE FILENAMES WHEN WORKING WITH DIFFERENT CUBES: e.g., 'Fit_spectral_cube.tif' --> 'Fit_morphologic_cube.tif'
+    # the lines below contain the filenames for the morphologic cueb as an example
     #++++++++++++++++++++++++++
 
-    filepath = os.path.join(input_directory, 'Fit_spectral_cube.tif')
-    model_path = os.path.join(output_directory, 'gmm_model_spectral.pkl')
-    cluster_output_path_training = os.path.join(output_directory, 'Cluster_Matrix_spectral_training.tif')
-    cluster_output_path_holdout = os.path.join(output_directory, 'Cluster_Matrix_spectral_holdout.tif')
-    binary_mask_path = os.path.join(output_directory, 'holdout_binary_mask_spectral.tif')
-    log_file_path = os.path.join(output_directory, 'gmm_clustering_log_spectral.txt')
+    filepath = os.path.join(input_directory, 'Fit_morphologic_cube.tif')
+    model_path = os.path.join(output_directory, 'gmm_model_morphologic.pkl')
+    cluster_output_path_training = os.path.join(output_directory, 'Cluster_Matrix_morphologic_training.tif')
+    cluster_output_path_holdout = os.path.join(output_directory, 'Cluster_Matrix_morphologic_holdout.tif')
+    binary_mask_path = os.path.join(output_directory, 'holdout_binary_mask_morphologic.tif')
+    log_file_path = os.path.join(output_directory, 'gmm_clustering_log_morphologic.txt')
 
     image, meta, no_data_value = load_multiband_raster(filepath)
     print(f"Loaded raster with shape {image.shape} (bands, height, width).")
@@ -315,7 +316,7 @@ def main():
     # The number of clusters for the morphological and spectral cube can be set by the user if a GT is known, or derived using BIC.
     #+++++++++++++++++++++++++++++++++++++
 
-    num_clusters =11  # Number of clusters
+    num_clusters =8 # Number of clusters for the morphologic cube as an example
     covariance_options = ['full', 'diag', 'tied', 'spherical']
     seed = 1
     reg_covar = 1e-3
