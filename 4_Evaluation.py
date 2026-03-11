@@ -26,13 +26,13 @@ mpl.rcParams['legend.fontsize'] = 7
 mpl.rcParams['figure.titlesize'] = 10
 
 # File paths:
-# pred_path = please insert the Predictions path in which your predicted matrix is saved.
-# gt_path = please insert the ground truth (GT) matrix that matches your predictions file
+# pred_path = please insert the Predictions path in which your predicted matrix is saved. e.g., Cluster_matrix_morphologic_holdout.tif
+# gt_path = please insert the ground truth (GT) matrix that matches your predictions file. e.g, GT_morphologic.tif
 # output_path = please insert an output path to save the generated plots
 
-pred_path = '/Volumes/Amanda_SSD/1.Mercury/1.INAF_2024/Prova/H05_maps/maps_to_merge/cube_ott_24/Fitting_cube_H05/outputs/fitting_outputs_april/balanced/morphologic/morphologic_CORRECED_nov25/NEW_OUTPUTS_WITH_STATS_CORRECTED_nov28/prova_2_CORRECTED_2dic/Cluster_Matrix_morphologic_holdout_CORRECTED_dic1.tif'
-gt_path = '/Volumes/Amanda_SSD/1.Mercury/1.INAF_2024/Prova/H05_maps/maps_to_merge/cube_ott_24/Test_cube_H05/Evaluation/eval_morphologic_balanced_merged_IP-ICP_dic4.tif'
-output_path = '/Users/amanda/Desktop/dummy'
+pred_path = 'Insert your Input file path/Cluster_matrix_morphologic_holdout.tif'
+gt_path = 'Insert your GT file path/GT_morphologic.tif'
+output_path = 'Insert your output folder path'
 
 nodata_value = -999 #please, select your Nan value!
 
@@ -57,6 +57,7 @@ print("NaN mismatch after cleaning:", nan_mismatch_after)
     print(f"Warning: {nan_mismatch} pixels have mismatched NaN values between GT and Prediction.")
 
 # README: this dictionary contains the predicted labels that corresponds to the GT labels. e.g., mapping = {5:0} indicates that Predicted cluster 5 --> matches the GT class 0.
+#This is the example for the morphologic cube
 mapping = {5:0, 4:1, 6:1, 3:3, 7:3, 0:6}
 
 # Detect multiple assignments to same GT class.
