@@ -1,6 +1,6 @@
 OVERVIEW
 
-This script (4_Evaluation.py) compares predicted cluster rasters with labeled-data (LD) rasters through cross-tabulation matrices.
+This script (4.1_Evaluation_Cross-tabs.py) compares predicted cluster rasters with labeled-data (LD) rasters through cross-tabulation matrices.
 
 Predicted clusters are NOT reassigned (remapped) to LD classes: the raw cluster labels are cross-tabulated against the raw LD classes. Because no correspondence between cluster numbers and LD classes is imposed, the matrices need not be square and their diagonal carries no meaning.
 
@@ -69,6 +69,6 @@ metrics_summary.csv --> NMI and ARI for all runs
 
 NOTES
 
-Version 1.1.0 replaces the evaluation of version 1.0.0, which reassigned each predicted cluster to an LD class through a user-defined mapping dictionary and computed accuracy, purity, precision/recall and F2-score. That reassignment is no longer used: the cross-tabulation of raw labels, together with NMI and ARI, does not require any correspondence between cluster and class labels.
+This script was added in version 1.1.0 and is the evaluation used in Vergara Sassarini et al. (JGR Planets). The reassignment-based evaluation of version 1.0.0 (4_Evaluation.py, described in 3_Evaluation_README.txt) is kept as an alternative: it maps each predicted cluster to an LD class through a user-defined dictionary and computes accuracy, purity, precision/recall and F2-score. The cross-tabulation of raw labels, together with NMI and ARI, does not require any correspondence between cluster and class labels.
 
 Set HASH_INPUTS = False to skip the SHA-256 checksums for very large rasters.
