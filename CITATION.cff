@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "u_Map"
+version: 1.1.0
+date-released: 2026-11-10
+license: AGPL-3.0-only
+repository-code: "https://github.com/vergara-sassarini/u_Map"
+authors:
+  - family-names: "Vergara Sassarini"
+    given-names: "Natalia Amanda"
+    orcid: "https://orcid.org/0000-0003-2693-3346"
+    affiliation: "INAF, Osservatorio Astronomico di Padova, Vicolo dell’Osservatorio 5, 35122, Padova, Italy"
