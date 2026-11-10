@@ -1,0 +1,74 @@
+OVERVIEW
+
+This script (4_Evaluation.py) compares predicted cluster rasters with labeled-data (LD) rasters through cross-tabulation matrices.
+
+Predicted clusters are NOT reassigned (remapped) to LD classes: the raw cluster labels are cross-tabulated against the raw LD classes. Because no correspondence between cluster numbers and LD classes is imposed, the matrices need not be square and their diagonal carries no meaning.
+
+Several comparisons can be run in one go (list RUNS in the user settings), e.g.:
+	•	CM held-out clusters vs. morphologic LD (Wright et al., 2019)
+	•	CS held-out clusters vs. spectral LD (Zambon et al., 2022)
+	•	CMS held-out clusters vs. both LD
+	•	CM predicted clusters (100% of pixels) vs. morphologic LD
+
+The held-out rasters (Cluster_Matrix_*_holdout.tif) are written by 2_Fitting.py.
+
+
+⸻
+
+INPUTS
+
+The user must define, in the USER SETTINGS block:
+	•	OUTPUT_DIR: folder where outputs will be saved
+	•	NODATA: nodata value used in the rasters (default -999); declared nodata values and NaN are also excluded
+	•	label dictionaries: raster value -> display name, for clusters and LD classes
+	•	RUNS: one entry per comparison, with
+		name: prefix of the output files
+		title: figure title
+		pred: path to the predicted cluster raster
+		ld: path to the LD raster
+		pred_names / ld_names: the label dictionaries to use
+		model: optional path to the fitted GMM (.pkl), recorded in the run metadata
+
+The prediction and LD rasters must share the same grid (size, transform, CRS). The script stops with an error if the sizes differ. To compare a prediction made at a different resolution (e.g., 222 m/pixel) with an LD raster at 450 m/pixel, first resample the prediction onto the LD grid with nearest-neighbour resampling (never average or bilinear, which would mix integer labels), e.g.:
+	gdalwarp -tr 450 450 -te <xmin> <ymin> <xmax> <ymax> -r near Morphologic_predicted_map.tif Morphologic_predicted_map_on_LD_grid.tif
+
+Check the coding of the spectral LD raster with numpy.unique: if the spectral units are coded 0-10 instead of 1-11, change SPECTRAL_LD accordingly (see the comment in the script).
+
+
+⸻
+
+METRICS COMPUTED
+
+	•	Cross-tabulation matrix of pixel counts (LD classes as rows, predicted clusters as columns)
+	•	Row-normalized matrix (%): distribution of each LD class across clusters
+	•	Column-normalized matrix (%): LD composition of each cluster
+	•	Normalized Mutual Information (NMI): arithmetic-mean normalization, NMI = MI / [(H_clusters + H_LD) / 2]; 0 = no shared information, 1 = identical partitions
+	•	Adjusted Rand Index (ARI): ~0 for random assignment of pixels to clusters, 1 for identical partitions
+
+NMI and ARI are computed directly from the counts matrix; the values are identical to scikit-learn's normalized_mutual_info_score and adjusted_rand_score applied to the pixel labels, but the computation also works for full-resolution maps with ~10^8 pixels.
+
+Only pixels that are valid in both rasters and whose labels appear in the dictionaries are counted.
+
+
+⸻
+
+OUTPUTS (for each run, prefixed with the run name)
+
+<name>_counts.csv --> Pixel counts, LD classes as rows and predicted clusters as columns
+<name>_rownorm_pct.csv --> Row-normalized matrix (%): distribution of each LD class across clusters
+<name>_colnorm_pct.csv --> Column-normalized matrix (%): LD composition of each cluster
+<name>_rownorm.png --> Heatmap of the row-normalized matrix
+<name>_colnorm.png --> Heatmap of the column-normalized matrix
+<name>_run_metadata.json / .txt --> Record of inputs (paths, sizes, SHA-256, grid, CRS), run parameters, NMI, ARI, pixel totals, software versions and, if given, the fitted model parameters
+<name>_script_copy.py --> Copy of the script used for the run
+
+metrics_summary.csv --> NMI and ARI for all runs
+
+
+⸻
+
+NOTES
+
+Version 1.1.0 replaces the evaluation of version 1.0.0, which reassigned each predicted cluster to an LD class through a user-defined mapping dictionary and computed accuracy, purity, precision/recall and F2-score. That reassignment is no longer used: the cross-tabulation of raw labels, together with NMI and ARI, does not require any correspondence between cluster and class labels.
+
+Set HASH_INPUTS = False to skip the SHA-256 checksums for very large rasters.
