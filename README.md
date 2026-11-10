@@ -90,3 +90,9 @@ COMPUTATIONAL NOTES
 Several scripts can become memory intensive, especially for large multiband rasters.
 
 For large datasets, execution on a remote server or a high-RAM workstation are strongly suggested.
+
+
+⸻
+CHANGELOG
+
+v1.1.0: added 4.1_Evaluation_Cross-tabs.py (cross-tabulation of raw cluster labels against labeled data, without reassignment, with NMI and ARI), used in Vergara Sassarini et al. (JGR Planets). The reassignment-based 4_Evaluation.py is kept as an alternative.
