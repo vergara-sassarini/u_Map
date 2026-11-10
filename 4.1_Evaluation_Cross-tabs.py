@@ -1,5 +1,5 @@
 """
-u_Map - 4_Evaluation.py (v1.1.0)
+u_Map - 4.1_Evaluation_Cross-tabs.py (added in v1.1.0)
 
 Cross-tabulation of RAW predicted cluster labels against labeled data (LD) classes,
 with no reassignment (remapping) of clusters to LD classes.
@@ -18,7 +18,8 @@ If they do not (e.g., a 222 m/pixel prediction against a 450 m/pixel LD), resamp
 prediction onto the LD grid first with nearest-neighbour resampling, e.g.:
   gdalwarp -tr 450 450 -te <xmin ymin xmax ymax of the LD> -r near pred.tif pred_on_LD_grid.tif
 
-See 3_Evaluation_README.txt for details.
+See 3.1_Evaluation_Cross-tabs_README.txt for details.
+For the alternative evaluation based on reassigning clusters to LD classes, see 4_Evaluation.py.
 """
 
 import os
@@ -289,6 +290,12 @@ def build_cross_tab(name, title, pred, ld, pred_names, ld_names, output_dir, mod
     gi = np.searchsorted(ld_labels, g[keep])
     counts = np.bincount(gi * len(pred_labels) + pi,
                          minlength=len(ld_labels) * len(pred_labels)).reshape(len(ld_labels), len(pred_labels))
+
+    extra_pred = np.unique(p[~np.isin(p, pred_labels)])
+    extra_ld = np.unique(g[~np.isin(g, ld_labels)])
+    if extra_pred.size or extra_ld.size:
+        print(f"WARNING [{name}]: {int((~keep).sum()):,} valid pixels have labels missing from the dictionaries "
+              f"(prediction: {extra_pred.tolist()}, LD: {extra_ld.tolist()}). Check the label coding.")
 
     nmi, ari = nmi_ari_from_counts(counts)
     print(f"[{name}] NMI = {nmi:.4f}   ARI = {ari:.4f}   N = {int(counts.sum()):,}")
