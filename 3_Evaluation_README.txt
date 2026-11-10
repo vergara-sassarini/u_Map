@@ -61,3 +61,6 @@ Warnings are printed in the terminal when inconsistencies are detected.
 
 
 * The morphologic GT contains the merged imp/ic units!
+
+!!NEW EVALUATION STEP WITH CROSS-TABULATION MATRICES!!
+since v1.1.0, the evaluation used in Vergara Sassarini et al. (JGR Planets) is the cross-tabulation of raw cluster labels with NMI and ARI (4.1_Evaluation_Cross-tabs.py; see 3.1_Evaluation_Cross-tabs_README.txt). This script, based on reassigning clusters to LD classes, is kept as an alternative.
